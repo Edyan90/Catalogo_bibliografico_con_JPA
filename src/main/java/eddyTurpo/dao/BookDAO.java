@@ -4,6 +4,9 @@ import eddyTurpo.entities.Book;
 import eddyTurpo.exceptions.NotFoundEx;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
+
+import java.util.List;
 
 public class BookDAO {
     private final EntityManager em;
@@ -34,4 +37,29 @@ public class BookDAO {
         transaction.commit();
         System.out.println("il libro/rivista è stato/a rimosso/a!");
     }
+
+    public List<Book> findByYear(long year) {
+        TypedQuery<Book> query = em.createQuery(
+                "SELECT b FROM Book b WHERE b.annoPubblicazione=:year",
+                Book.class);
+        query.setParameter("year", year);
+        return query.getResultList();
+    }
+
+    public List<Book> findByAuthor(String autore) {
+        TypedQuery<Book> query = em.createQuery(
+                "SELECT b FROM Book b WHERE b.autore=:autore",
+                Book.class);
+        query.setParameter("autore", autore);
+        return query.getResultList();
+    }
+
+    public List<Book> findByTitle(String title) {
+        TypedQuery<Book> query = em.createQuery(
+                "SELECT b FROM Book b WHERE b.titolo LIKE :title",
+                Book.class);
+        query.setParameter("title", "%" + title + "%");
+        return query.getResultList();
+    }
+
 }

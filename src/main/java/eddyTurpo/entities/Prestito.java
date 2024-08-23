@@ -25,16 +25,21 @@ public class Prestito {
     private LocalDate dataRestituizioneEffettiva;
 
 
-    public Prestito(long id, Utente utente, Book elementoPrestato, LocalDate dataInizioPrestito, LocalDate dataRestituizioneEffettiva) {
-        this.id = id;
+    public Prestito(Utente utente, Book elementoPrestato, LocalDate dataInizioPrestito, LocalDate dataRestituizioneEffettiva) {
+
         this.utente = utente;
         this.elementoPrestato = elementoPrestato;
         this.dataInizioPrestito = dataInizioPrestito;
+        this.dataRestituizionePrevista = calcolaDataRestituzionePrevista();
         this.dataRestituizioneEffettiva = dataRestituizioneEffettiva;
     }
 
     public Prestito() {
 
+    }
+
+    public LocalDate calcolaDataRestituzionePrevista() {
+        return dataInizioPrestito.plusDays(30);
     }
 
     public long getId() {

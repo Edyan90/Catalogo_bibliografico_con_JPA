@@ -9,7 +9,6 @@ import java.util.List;
 @DiscriminatorColumn(name = "book_type")
 public abstract class Book {
     @Id
-    @GeneratedValue
     protected long codiceISBN;
     @Column(name = "titolo")
     protected String titolo;

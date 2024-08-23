@@ -23,11 +23,11 @@ public class Utente {
     public Utente() {
     }
 
-    public Utente(String nome, String cognome, LocalDate dataNascità, long numeroTessera) {
+    public Utente(String nome, String cognome, LocalDate dataNascità) {
         this.nome = nome;
         this.cognome = cognome;
         this.dataNascità = dataNascità;
-        this.numeroTessera = numeroTessera;
+
     }
 
     public String getNome() {
