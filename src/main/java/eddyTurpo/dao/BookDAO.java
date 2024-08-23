@@ -43,6 +43,9 @@ public class BookDAO {
                 "SELECT b FROM Book b WHERE b.annoPubblicazione=:year",
                 Book.class);
         query.setParameter("year", year);
+        if (query.getResultList().isEmpty()) {
+            throw new NotFoundEx(year);
+        }
         return query.getResultList();
     }
 
@@ -51,6 +54,9 @@ public class BookDAO {
                 "SELECT b FROM Book b WHERE b.autore=:autore",
                 Book.class);
         query.setParameter("autore", autore);
+        if (query.getResultList().isEmpty()) {
+            throw new NotFoundEx(autore);
+        }
         return query.getResultList();
     }
 
@@ -59,6 +65,9 @@ public class BookDAO {
                 "SELECT b FROM Book b WHERE b.titolo LIKE :title",
                 Book.class);
         query.setParameter("title", "%" + title + "%");
+        if (query.getResultList().isEmpty()) {
+            throw new NotFoundEx(title);
+        }
         return query.getResultList();
     }
 

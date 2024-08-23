@@ -44,6 +44,9 @@ public class PrestitoDAO {
                 "SELECT p FROM Prestito p WHERE p.utente.numeroTessera=:numero",
                 Prestito.class);
         query.setParameter("numero", numero);
+        if (query.getResultList().isEmpty()) {
+            throw new NotFoundEx(numero);
+        }
         return query.getResultList();
     }
 
@@ -52,6 +55,9 @@ public class PrestitoDAO {
                 "SELECT p FROM Prestito p WHERE p.dataRestituizioneEffettiva IS NULL AND p.dataRestituizionePrevista < :today",
                 Prestito.class);
         query.setParameter("today", LocalDate.now());
+        if (query.getResultList().isEmpty()) {
+            throw new NotFoundEx();
+        }
         return query.getResultList();
     }
 }
