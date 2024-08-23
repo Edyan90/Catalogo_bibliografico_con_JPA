@@ -4,6 +4,9 @@ import eddyTurpo.entities.Prestito;
 import eddyTurpo.exceptions.NotFoundEx;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
+
+import java.util.List;
 
 public class PrestitoDAO {
     private final EntityManager em;
@@ -33,5 +36,13 @@ public class PrestitoDAO {
         em.remove(found);
         transaction.commit();
         System.out.println("il prestito con ID " + found.getId() + " è stato rimosso!");
+    }
+
+    public List<Prestito> findElementbyCard(long numero) {
+        TypedQuery<Prestito> query = em.createQuery(
+                "SELECT p FROM Prestito p WHERE p.utente.numeroTessera=:numero",
+                Prestito.class);
+        query.setParameter("numero", numero);
+        return query.getResultList();
     }
 }

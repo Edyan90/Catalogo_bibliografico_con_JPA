@@ -40,7 +40,7 @@ public class Application {
         Libro harryP7 = new Libro(107, "Harry Potter e i doni della morte", 2003, 800, "JKR", "Fantasy");
         //bookDAO.save(harryP7);
         Rivista gazzettaDelProfeta = new Rivista(200, "La gazzetta del Profeta", 2024, 25, PeriodicitàType.SETTIMANALE);
-        bookDAO.save(gazzettaDelProfeta);
+        //bookDAO.save(gazzettaDelProfeta);
         List<Libro> harryPotter = new ArrayList<>();
         harryPotter.addAll(Arrays.asList(harryP1, harryP2, harryP3, harryP4, harryP5, harryP6, harryP7));
         harryPotter.forEach(System.out::println);
@@ -71,8 +71,11 @@ public class Application {
         //prestitoDAO.save(prestito1);
         //prestitoDAO.save(prestito2);
         //prestitoDAO.save(prestito3);
-        
 
+        List<Prestito> ricercaElementiTramiteTessera = prestitoDAO.findElementbyCard(1);
+        ricercaElementiTramiteTessera.forEach(System.out::println);
+        List<Prestito> ricercaElementiTramiteTessera2 = prestitoDAO.findElementbyCard(2);
+        ricercaElementiTramiteTessera2.forEach(System.out::println);
         System.out.println("--------------Ricerca di tutti i prestiti scaduti e non ancora restituiti-------------------");
     }
 }
