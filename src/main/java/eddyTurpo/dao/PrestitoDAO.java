@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class PrestitoDAO {
@@ -43,6 +44,14 @@ public class PrestitoDAO {
                 "SELECT p FROM Prestito p WHERE p.utente.numeroTessera=:numero",
                 Prestito.class);
         query.setParameter("numero", numero);
+        return query.getResultList();
+    }
+
+    public List<Prestito> ricercaPrestitiScadutiENonRestituiti() {
+        TypedQuery<Prestito> query = em.createQuery(
+                "SELECT p FROM Prestito p WHERE p.dataRestituizioneEffettiva IS NULL AND p.dataRestituizionePrevista < :today",
+                Prestito.class);
+        query.setParameter("today", LocalDate.now());
         return query.getResultList();
     }
 }
