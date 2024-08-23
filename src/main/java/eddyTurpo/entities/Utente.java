@@ -3,22 +3,22 @@ package eddyTurpo.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "utente")
 public class Utente {
     @Id
     @GeneratedValue
-    @Column(name = "id")
-    private long id;
+    private long numeroTessera;
     @Column(name = "nome")
     private String nome;
     @Column(name = "cognome")
     private String cognome;
     @Column(name = "data_di_nascità")
     private LocalDate dataNascità;
-    @Column(name = "numero_tessera")
-    private long numeroTessera;
+    @OneToMany(mappedBy = "utente")
+    private List<Prestito> prestiti;
 
     public Utente() {
     }

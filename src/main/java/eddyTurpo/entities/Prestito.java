@@ -11,9 +11,11 @@ public class Prestito {
     @GeneratedValue
     @Column(name = "id")
     private long id;
-    @Column(name = "utente")
+    @ManyToOne
+    @JoinColumn(name = "id_utente")
     private Utente utente;
-    @Column(name = "elemento_prestato")
+    @ManyToOne
+    @JoinColumn(name = "codiceISBN")
     private Book elementoPrestato;
     @Column(name = "data_inizio_prestito")
     private LocalDate dataInizioPrestito;
@@ -21,6 +23,7 @@ public class Prestito {
     private LocalDate dataRestituizionePrevista;
     @Column(name = "data_restituizione_effettiva")
     private LocalDate dataRestituizioneEffettiva;
+
 
     public Prestito(long id, Utente utente, Book elementoPrestato, LocalDate dataInizioPrestito, LocalDate dataRestituizioneEffettiva) {
         this.id = id;

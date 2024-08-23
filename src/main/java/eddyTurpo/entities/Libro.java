@@ -2,10 +2,9 @@ package eddyTurpo.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "libro")
+
 public class Libro extends Book {
     @Column(name = "autore")
     private String autore;

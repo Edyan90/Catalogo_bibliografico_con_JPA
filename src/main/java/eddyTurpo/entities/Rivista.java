@@ -1,10 +1,13 @@
 package eddyTurpo.entities;
 
 import eddyTurpo.enums.PeriodicitàType;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 @Entity
-@Table(name = "rivista")
+
 public class Rivista extends Book {
     @Column(name = "periodicità")
     @Enumerated(EnumType.STRING)
