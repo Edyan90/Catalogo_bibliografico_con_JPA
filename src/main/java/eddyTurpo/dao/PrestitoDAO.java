@@ -41,7 +41,7 @@ public class PrestitoDAO {
 
     public List<Prestito> findElementbyCard(long numero) {
         TypedQuery<Prestito> query = em.createQuery(
-                "SELECT p FROM Prestito p WHERE p.utente.numeroTessera=:numero",
+                "SELECT p FROM Prestito p WHERE p.utente.numeroTessera=:numero AND p.dataRestituizioneEffettiva IS NULL",
                 Prestito.class);
         query.setParameter("numero", numero);
         if (query.getResultList().isEmpty()) {
