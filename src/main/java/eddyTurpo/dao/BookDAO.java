@@ -31,6 +31,7 @@ public class BookDAO {
 
     public void delete(long id) {
         Book found = this.findByID(id);
+        if (found == null) throw new NotFoundEx(id);
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.remove(found);

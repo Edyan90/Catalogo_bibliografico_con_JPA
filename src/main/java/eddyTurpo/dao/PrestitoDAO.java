@@ -32,6 +32,7 @@ public class PrestitoDAO {
 
     public void delete(long id) {
         Prestito found = this.findByID(id);
+        if (found == null) throw new NotFoundEx(id);
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.remove(found);

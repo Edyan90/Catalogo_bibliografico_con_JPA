@@ -28,6 +28,7 @@ public class UtenteDAO {
 
     public void delete(long id) {
         Utente found = this.findByID(id);
+        if (found == null) throw new NotFoundEx(id);
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
         em.remove(found);
