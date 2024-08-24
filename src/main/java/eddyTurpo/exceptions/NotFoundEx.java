@@ -6,10 +6,11 @@ public class NotFoundEx extends RuntimeException {
     }
 
     public NotFoundEx(String stringa) {
-        super("L'elemento con " + stringa + " non è stato trovato");
+        super("L'autore o titolo inserito: " + stringa + " non è stato trovato");
     }
 
     public NotFoundEx() {
         super("Non ci sono prestiti scaduti e mai restituiti, dato che ho gestito pure gli errori penso di meritarmi un altro 10 :)");
     }
+
 }

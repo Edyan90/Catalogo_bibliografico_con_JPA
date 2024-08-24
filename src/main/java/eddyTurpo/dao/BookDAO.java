@@ -2,6 +2,7 @@ package eddyTurpo.dao;
 
 import eddyTurpo.entities.Book;
 import eddyTurpo.exceptions.NotFoundEx;
+import eddyTurpo.exceptions.NotFoundYear;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
@@ -45,7 +46,7 @@ public class BookDAO {
                 Book.class);
         query.setParameter("year", year);
         if (query.getResultList().isEmpty()) {
-            throw new NotFoundEx(year);
+            throw new NotFoundYear(year);
         }
         return query.getResultList();
     }
@@ -71,6 +72,4 @@ public class BookDAO {
         }
         return query.getResultList();
     }
-
-
 }

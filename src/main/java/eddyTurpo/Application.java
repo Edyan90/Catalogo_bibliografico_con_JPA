@@ -49,7 +49,6 @@ public class Application {
         System.out.println("------------------------Libro trovato tramite ISBN----------------------------");
         Book libroDaTrovare = bookDAO.findByID(105);
         System.out.println(libroDaTrovare);
-
         System.out.println("------------------------Libro trovato tramite anno pubblicazione----------------------------");
         List<Book> libriTrovatiPerAnno = bookDAO.findByYear(1999);
         libriTrovatiPerAnno.forEach(System.out::println);
@@ -64,7 +63,7 @@ public class Application {
         Utente utente1 = new Utente("Eddy", "Turpo", LocalDate.of(1990, 04, 01));
         //utenteDAO.save(utente1);
         Utente utente2 = new Utente("Francesca", "Battistini", LocalDate.of(1991, 05, 30));
-        utenteDAO.save(utente2);
+        //utenteDAO.save(utente2);
         Prestito prestito1 = new Prestito(utente1, harryP1, LocalDate.now(), null);
         Prestito prestito2 = new Prestito(utente2, harryP2, LocalDate.now(), null);
         Prestito prestito3 = new Prestito(utente1, harryP3, LocalDate.now().minusDays(20), LocalDate.now());
@@ -82,5 +81,6 @@ public class Application {
         System.out.println("--------------Ricerca di tutti i prestiti scaduti e non ancora restituiti-------------------");
         List<Prestito> ricercaPrestitiScadutieMaiRestituiti = prestitoDAO.ricercaPrestitiScadutiENonRestituiti();
         ricercaPrestitiScadutieMaiRestituiti.forEach(System.out::println);
+
     }
 }
